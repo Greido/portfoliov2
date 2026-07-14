@@ -94,12 +94,12 @@ export default function ProjectModal({
             <div className="mt-6">
               {project.images.length > 0 ? (
                 <>
-                  <div className="nb-border aspect-video w-full overflow-hidden bg-background">
+                  <div className="nb-border flex max-h-[55vh] w-full items-center justify-center overflow-hidden bg-background">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={project.images[activeImage]}
                       alt={`${project.title} screenshot ${activeImage + 1}`}
-                      className="h-full w-full object-cover"
+                      className="max-h-[55vh] w-auto max-w-full object-contain"
                     />
                   </div>
                   {project.images.length > 1 && (
