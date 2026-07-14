@@ -155,13 +155,13 @@ const en: SiteContent = {
         repoUrl: "https://github.com/Greido/Pomodoro",
         placeholder: false,
       },
-      // PLACEHOLDER: replace this project with your own (title, description, tags, links).
       {
-        title: "Your project #3",
+        title: "Nike Page",
         description:
-          "Another reserved slot for an AI, frontend, or design project you want to showcase.",
-        tags: ["AI"],
-        placeholder: true,
+          "Nike-themed landing page showcasing products and brand news, built with React, Vite and Tailwind CSS.",
+        tags: ["React", "Vite", "Tailwind CSS"],
+        repoUrl: "https://github.com/Greido/NikePage",
+        placeholder: false,
       },
     ],
   },
@@ -287,11 +287,12 @@ const es: SiteContent = {
         placeholder: false,
       },
       {
-        title: "Tu proyecto #3",
+        title: "Nike Page",
         description:
-          "Otro espacio reservado para un proyecto de IA, frontend o diseño que quieras destacar.",
-        tags: ["IA"],
-        placeholder: true,
+          "Landing page de Nike para mostrar productos y novedades de la marca, hecha con React, Vite y Tailwind CSS.",
+        tags: ["React", "Vite", "Tailwind CSS"],
+        repoUrl: "https://github.com/Greido/NikePage",
+        placeholder: false,
       },
     ],
   },
