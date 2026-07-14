@@ -161,7 +161,11 @@ const en: SiteContent = {
           "Mobile app that helps users manage their time with the Pomodoro technique to boost productivity.",
         tags: ["React Native", "Expo"],
         repoUrl: "https://github.com/Greido/Pomodoro",
-        images: [],
+        images: [
+          "/projects/pomodoro-app/1.PNG",
+          "/projects/pomodoro-app/2.PNG",
+          "/projects/pomodoro-app/3.PNG",
+        ],
         placeholder: false,
       },
       {
@@ -299,7 +303,11 @@ const es: SiteContent = {
           "Aplicación móvil que ayuda a los usuarios a gestionar su tiempo utilizando la técnica Pomodoro, mejorando su productividad.",
         tags: ["React Native", "Expo"],
         repoUrl: "https://github.com/Greido/Pomodoro",
-        images: [],
+        images: [
+          "/projects/pomodoro-app/1.PNG",
+          "/projects/pomodoro-app/2.PNG",
+          "/projects/pomodoro-app/3.PNG",
+        ],
         placeholder: false,
       },
       {
