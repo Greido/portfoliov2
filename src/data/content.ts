@@ -33,6 +33,7 @@ export type SiteContent = {
     cv: string;
     menuLabel: string;
     downloadCv: string;
+    resumeUrl: string;
   };
   hero: {
     greeting: string;
@@ -73,8 +74,6 @@ export const profile = {
     github: "#", // PLACEHOLDER
     linkedin: "#", // PLACEHOLDER
   },
-  // PLACEHOLDER: coloca el PDF en /public/cv.pdf y actualiza este link
-  resumeUrl: "#",
 };
 
 const en: SiteContent = {
@@ -89,6 +88,8 @@ const en: SiteContent = {
     cv: "CV",
     menuLabel: "Menu",
     downloadCv: "Download CV",
+    // PLACEHOLDER: add the English CV as public/cv/cv-en.pdf
+    resumeUrl: "/cv/cv-en.pdf",
   },
   hero: {
     greeting: "Hi, I'm 👋",
@@ -226,6 +227,8 @@ const es: SiteContent = {
     cv: "CV",
     menuLabel: "Menú",
     downloadCv: "Descargar CV",
+    // PLACEHOLDER: agrega el CV en español como public/cv/cv-es.pdf
+    resumeUrl: "/cv/cv-es.pdf",
   },
   hero: {
     greeting: "Hola, soy 👋",

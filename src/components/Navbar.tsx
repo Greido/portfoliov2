@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { content, profile } from "@/data/content";
+import { content } from "@/data/content";
 import { useLanguage } from "@/lib/language";
 import LanguageToggle from "@/components/LanguageToggle";
 
@@ -47,7 +47,8 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <LanguageToggle />
           <a
-            href={profile.resumeUrl}
+            href={t.nav.resumeUrl}
+            download
             className="nb-border nb-shadow-sm nb-interactive bg-accent-1 px-4 py-2 text-sm font-black text-foreground"
           >
             {t.nav.cv}
@@ -79,7 +80,8 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href={profile.resumeUrl}
+                href={t.nav.resumeUrl}
+                download
                 className="rounded-md px-3 py-2 text-sm font-bold text-accent-2 hover:bg-surface-alt"
               >
                 {t.nav.downloadCv}
