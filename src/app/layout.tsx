@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LanguageProvider } from "@/lib/language";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Juan Pablo Corzo Barrera — AI Developer & UI Designer",
   description:
-    "Portfolio de Juan Pablo Corzo Barrera, AI Developer y UI Designer. Frontend moderno, backend con Node.js/Express/MySQL y diseño de interfaces.",
+    "Portfolio of Juan Pablo Corzo Barrera, AI Developer and UI Designer. Modern frontend, Node.js/Express/MySQL backend, and interface design.",
 };
 
 export default function RootLayout({
@@ -25,11 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="es"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

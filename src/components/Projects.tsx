@@ -1,64 +1,74 @@
+"use client";
+
 import Reveal from "@/components/Reveal";
-import { projects } from "@/data/site";
+import { content } from "@/data/content";
+import { useLanguage } from "@/lib/language";
+
+const cardColors = ["bg-surface", "bg-accent-3", "bg-surface"];
 
 export default function Projects() {
+  const { lang } = useLanguage();
+  const t = content[lang].projects;
+
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-28">
       <Reveal>
-        <p className="font-mono text-sm text-accent-1">03 · Proyectos</p>
+        <p className="nb-border w-fit bg-accent-3 px-3 py-1 font-mono text-sm font-bold text-foreground">
+          {t.label}
+        </p>
       </Reveal>
 
       <Reveal delay={0.1}>
-        <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-          Cosas que he construido
+        <h2 className="mt-4 max-w-2xl text-3xl font-black tracking-tight sm:text-4xl">
+          {t.heading}
         </h2>
       </Reveal>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {projects.map((project, i) => (
+      <div className="mt-12 grid gap-8 md:grid-cols-3">
+        {t.items.map((project, i) => (
           <Reveal key={project.title} delay={0.1 + i * 0.08}>
             <div
-              className={`group flex h-full flex-col rounded-2xl border p-6 transition-colors ${
+              className={`nb-interactive flex h-full flex-col p-6 ${
                 project.placeholder
-                  ? "border-dashed border-border/80 bg-transparent"
-                  : "border-border bg-background-alt hover:border-accent-1/50"
+                  ? "border-[3px] border-dashed border-border bg-transparent"
+                  : `nb-border nb-shadow ${cardColors[i % cardColors.length]}`
               }`}
             >
               {project.placeholder && (
-                <span className="mb-3 w-fit rounded-full border border-accent-3/40 px-2.5 py-0.5 text-xs font-mono text-accent-3">
-                  Espacio disponible
+                <span className="mb-3 w-fit bg-accent-1 px-2.5 py-0.5 text-xs font-black text-foreground">
+                  {t.slotAvailable}
                 </span>
               )}
-              <h3 className="text-lg font-semibold">{project.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+              <h3 className="text-lg font-black">{project.title}</h3>
+              <p className="mt-2 flex-1 text-sm font-medium leading-relaxed text-muted">
                 {project.description}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-white/5 px-2.5 py-1 text-xs text-muted"
+                    className="nb-border bg-background px-2.5 py-1 text-xs font-bold text-foreground"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
               {!project.placeholder && (
-                <div className="mt-5 flex gap-4 text-sm">
+                <div className="mt-5 flex gap-4 text-sm font-bold">
                   {project.demoUrl && (
                     <a
                       href={project.demoUrl}
-                      className="text-accent-1 hover:underline"
+                      className="underline decoration-2 underline-offset-2 hover:text-accent-2"
                     >
-                      Demo
+                      {t.demo}
                     </a>
                   )}
                   {project.repoUrl && (
                     <a
                       href={project.repoUrl}
-                      className="text-accent-1 hover:underline"
+                      className="underline decoration-2 underline-offset-2 hover:text-accent-2"
                     >
-                      Repo
+                      {t.repo}
                     </a>
                   )}
                 </div>

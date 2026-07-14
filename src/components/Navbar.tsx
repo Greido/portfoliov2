@@ -1,17 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { profile } from "@/data/site";
-
-const links = [
-  { href: "#about", label: "Sobre mí" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Proyectos" },
-  { href: "#experience", label: "Experiencia" },
-  { href: "#contact", label: "Contacto" },
-];
+import { content, profile } from "@/data/content";
+import { useLanguage } from "@/lib/language";
+import LanguageToggle from "@/components/LanguageToggle";
 
 export default function Navbar() {
+  const { lang } = useLanguage();
+  const t = content[lang];
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -23,26 +19,24 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-md"
-          : "border-b border-transparent"
+      className={`fixed top-0 z-50 w-full border-b-[3px] border-border bg-background transition-shadow duration-200 ${
+        scrolled ? "shadow-[0_4px_0_0_var(--border)]" : ""
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
           href="#home"
-          className="font-mono text-sm font-semibold tracking-tight text-foreground"
+          className="font-mono text-lg font-black tracking-tight text-foreground"
         >
-          JPCB<span className="text-accent-1">.</span>
+          JPCB<span className="text-accent-2">.</span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
+        <ul className="hidden items-center gap-1 md:flex">
+          {t.nav.links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-muted transition-colors hover:text-foreground"
+                className="rounded-md px-3 py-2 text-sm font-bold text-foreground transition-colors hover:bg-surface-alt"
               >
                 {link.label}
               </a>
@@ -50,16 +44,19 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a
-          href={profile.resumeUrl}
-          className="hidden rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:border-accent-1 hover:text-accent-1 md:inline-block"
-        >
-          CV
-        </a>
+        <div className="hidden items-center gap-3 md:flex">
+          <LanguageToggle />
+          <a
+            href={profile.resumeUrl}
+            className="nb-border nb-shadow-sm nb-interactive bg-accent-1 px-4 py-2 text-sm font-black text-foreground"
+          >
+            {t.nav.cv}
+          </a>
+        </div>
 
         <details className="md:hidden">
-          <summary className="list-none cursor-pointer rounded-full border border-border p-2 text-foreground">
-            <span className="sr-only">Menú</span>
+          <summary className="nb-border nb-shadow-sm list-none cursor-pointer bg-surface p-2 text-foreground">
+            <span className="sr-only">{t.nav.menuLabel}</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path
                 d="M4 6h16M4 12h16M4 18h16"
@@ -69,22 +66,25 @@ export default function Navbar() {
               />
             </svg>
           </summary>
-          <div className="absolute right-6 mt-2 flex flex-col gap-1 rounded-xl border border-border bg-background-alt p-3 shadow-xl">
-            {links.map((link) => (
+          <div className="nb-border nb-shadow absolute right-6 mt-2 flex flex-col gap-3 bg-surface p-3">
+            <LanguageToggle />
+            <div className="flex flex-col gap-1">
+              {t.nav.links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-md px-3 py-2 text-sm font-bold text-foreground hover:bg-surface-alt"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                key={link.href}
-                href={link.href}
-                className="rounded-lg px-3 py-2 text-sm text-muted hover:bg-white/5 hover:text-foreground"
+                href={profile.resumeUrl}
+                className="rounded-md px-3 py-2 text-sm font-bold text-accent-2 hover:bg-surface-alt"
               >
-                {link.label}
+                {t.nav.downloadCv}
               </a>
-            ))}
-            <a
-              href={profile.resumeUrl}
-              className="rounded-lg px-3 py-2 text-sm text-accent-1 hover:bg-white/5"
-            >
-              Descargar CV
-            </a>
+            </div>
           </div>
         </details>
       </nav>

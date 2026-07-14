@@ -2,7 +2,8 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { profile } from "@/data/site";
+import { content, profile } from "@/data/content";
+import { useLanguage } from "@/lib/language";
 
 function GithubIcon() {
   return (
@@ -35,57 +36,61 @@ function MailIcon() {
 }
 
 export default function Hero() {
+  const { lang } = useLanguage();
+  const t = content[lang];
   const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
+    setRoleIndex(0);
     const id = setInterval(() => {
-      setRoleIndex((i) => (i + 1) % profile.roles.length);
+      setRoleIndex((i) => (i + 1) % t.hero.roles.length);
     }, 2400);
     return () => clearInterval(id);
-  }, []);
+  }, [t.hero.roles.length]);
+
+  const role = t.hero.roles[roleIndex] ?? t.hero.roles[0];
 
   return (
     <section
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden pt-24"
     >
-      <div className="grid-fade pointer-events-none absolute inset-0" />
+      <div className="nb-dots pointer-events-none absolute inset-0" />
 
       <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-6 py-16">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+        <motion.span
+          initial={{ opacity: 0, y: 10, rotate: -6 }}
+          animate={{ opacity: 1, y: 0, rotate: -3 }}
           transition={{ duration: 0.5 }}
-          className="font-mono text-sm text-accent-1"
+          className="nb-border nb-shadow-sm w-fit bg-accent-1 px-4 py-1.5 font-mono text-sm font-bold text-foreground"
         >
-          Hola, soy
-        </motion.p>
+          {t.hero.greeting}
+        </motion.span>
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.05 }}
-          className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl"
+          className="text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
         >
-          <span className="gradient-text">{profile.name}</span>
+          {profile.name}
         </motion.h1>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="h-10 text-2xl font-medium text-muted sm:text-3xl"
         >
           <AnimatePresence mode="wait">
             <motion.span
-              key={profile.roles[roleIndex]}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35 }}
-              className="inline-block"
+              key={role}
+              initial={{ opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -16 }}
+              transition={{ duration: 0.3 }}
+              className="nb-border inline-block bg-accent-2 px-4 py-2 text-xl font-black text-background sm:text-2xl"
             >
-              {profile.roles[roleIndex]}
+              {role}
             </motion.span>
           </AnimatePresence>
         </motion.div>
@@ -94,9 +99,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="max-w-xl text-lg text-muted"
+          className="max-w-xl text-lg font-medium text-muted"
         >
-          {profile.shortBio}
+          {t.hero.bio}
         </motion.p>
 
         <motion.div
@@ -107,35 +112,35 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform hover:scale-105"
+            className="nb-border nb-shadow nb-interactive bg-foreground px-6 py-3 text-sm font-black text-background"
           >
-            Ver proyectos
+            {t.hero.viewProjects}
           </a>
           <a
             href="#contact"
-            className="rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent-1 hover:text-accent-1"
+            className="nb-border nb-shadow nb-interactive bg-surface px-6 py-3 text-sm font-black text-foreground"
           >
-            Contactar
+            {t.hero.contact}
           </a>
 
-          <div className="ml-2 flex items-center gap-3 text-muted">
+          <div className="ml-2 flex items-center gap-3">
             <a
               href={profile.socials.github}
-              className="transition-colors hover:text-accent-1"
+              className="nb-border nb-interactive flex h-10 w-10 items-center justify-center bg-surface text-foreground"
               aria-label="GitHub"
             >
               <GithubIcon />
             </a>
             <a
               href={profile.socials.linkedin}
-              className="transition-colors hover:text-accent-1"
+              className="nb-border nb-interactive flex h-10 w-10 items-center justify-center bg-surface text-foreground"
               aria-label="LinkedIn"
             >
               <LinkedinIcon />
             </a>
             <a
               href={`mailto:${profile.email}`}
-              className="transition-colors hover:text-accent-1"
+              className="nb-border nb-interactive flex h-10 w-10 items-center justify-center bg-surface text-foreground"
               aria-label="Email"
             >
               <MailIcon />

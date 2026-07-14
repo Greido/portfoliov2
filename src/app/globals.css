@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #08080a;
-  --background-alt: #0f0f13;
-  --foreground: #f4f4f5;
-  --muted: #9a9aa5;
-  --border: #1e1e24;
-  --accent-1: #a78bfa;
-  --accent-2: #f472b6;
-  --accent-3: #fb923c;
+  --background: #f4f0da;
+  --surface: #ffffff;
+  --surface-alt: #ded49c;
+  --foreground: #0f0f0e;
+  --muted: #544b39;
+  --border: #0f0f0e;
+  --accent-1: #d7a92c;
+  --accent-2: #a05646;
+  --accent-3: #afac9a;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-background-alt: var(--background-alt);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
@@ -36,35 +38,52 @@ body {
 
 ::selection {
   background: var(--accent-1);
-  color: #0a0a0a;
+  color: var(--foreground);
 }
 
-.gradient-text {
-  background: linear-gradient(90deg, var(--accent-1), var(--accent-2) 55%, var(--accent-3));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Neobrutalist primitives: thick borders + hard offset shadows, no blur */
+.nb-border {
+  border: 3px solid var(--border);
 }
 
-.grid-fade {
-  background-image:
-    linear-gradient(to right, var(--border) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-  background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 40%, transparent 80%);
-  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 40%, transparent 80%);
+.nb-shadow {
+  box-shadow: 6px 6px 0 0 var(--border);
+}
+
+.nb-shadow-sm {
+  box-shadow: 4px 4px 0 0 var(--border);
+}
+
+.nb-interactive {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.nb-interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 0 var(--border);
+}
+
+.nb-interactive:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--border);
+}
+
+.nb-dots {
+  background-image: radial-gradient(var(--border) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  opacity: 0.25;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 999px;
+  background: var(--foreground);
+  border: 2px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-1);
+  background: var(--accent-2);
 }
