@@ -21,11 +21,19 @@ export default function ProjectModal({
   onClose: () => void;
 }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  useEffect(() => {
+    setIsZoomed(false);
+  }, [project]);
 
   useEffect(() => {
     if (!project) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (isZoomed) setIsZoomed(false);
+        else onClose();
+      }
     };
     window.addEventListener("keydown", onKey);
     const previousOverflow = document.body.style.overflow;
@@ -34,7 +42,7 @@ export default function ProjectModal({
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = previousOverflow;
     };
-  }, [project, onClose]);
+  }, [project, onClose, isZoomed]);
 
   return (
     <AnimatePresence>
@@ -94,12 +102,15 @@ export default function ProjectModal({
             <div className="mt-6">
               {project.images.length > 0 ? (
                 <>
-                  <div className="nb-border flex max-h-[55vh] w-full items-center justify-center overflow-hidden bg-background">
+                  <div
+                    className="nb-border group flex max-h-[55vh] w-full cursor-zoom-in items-center justify-center overflow-hidden bg-background"
+                    onClick={() => setIsZoomed(true)}
+                  >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={project.images[activeImage]}
                       alt={`${project.title} screenshot ${activeImage + 1}`}
-                      className="max-h-[55vh] w-auto max-w-full object-contain"
+                      className="max-h-[55vh] w-auto max-w-full object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                     />
                   </div>
                   {project.images.length > 1 && (
@@ -156,6 +167,28 @@ export default function ProjectModal({
               </div>
             )}
           </motion.div>
+        </motion.div>
+      )}
+      {project && isZoomed && (
+        <motion.div
+          className="fixed inset-0 z-[110] flex items-center justify-center bg-foreground/90 p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          onClick={() => setIsZoomed(false)}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <motion.img
+            src={project.images[activeImage]}
+            alt={`${project.title} screenshot ${activeImage + 1}`}
+            className="nb-border max-h-[90vh] max-w-[95vw] cursor-zoom-out object-contain"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.92 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            onClick={(e) => e.stopPropagation()}
+          />
         </motion.div>
       )}
     </AnimatePresence>

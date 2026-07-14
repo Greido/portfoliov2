@@ -71,8 +71,8 @@ export const profile = {
   // PLACEHOLDER: comparte el email real cuando lo tengas listo
   email: "tu@email.com",
   socials: {
-    github: "#", // PLACEHOLDER
-    linkedin: "#", // PLACEHOLDER
+    github: "https://github.com/Greido",
+    linkedin: "https://www.linkedin.com/in/juancorzobarrera/",
   },
 };
 
@@ -152,7 +152,20 @@ const en: SiteContent = {
           "E-commerce site for a local pet store, built as a freelance thesis project.",
         tags: ["React", "Node.js", "Express", "MySQL"],
         repoUrl: "https://github.com/Greido/tesisecommerce",
-        images: [],
+        images: [
+          "/projects/ecommerce/1.png",
+          "/projects/ecommerce/2.png",
+          "/projects/ecommerce/3.png",
+          "/projects/ecommerce/4.png",
+          "/projects/ecommerce/5.png",
+          "/projects/ecommerce/6.png",
+          "/projects/ecommerce/7.png",
+          "/projects/ecommerce/8.png",
+          "/projects/ecommerce/9.png",
+          "/projects/ecommerce/10.png",
+          "/projects/ecommerce/11.png",
+          "/projects/ecommerce/12.png",
+        ],
         placeholder: false,
       },
       {
@@ -294,7 +307,20 @@ const es: SiteContent = {
           "Ecommerce para una tienda de animales local, desarrollado como proyecto de tesis de forma freelance.",
         tags: ["React", "Node.js", "Express", "MySQL"],
         repoUrl: "https://github.com/Greido/tesisecommerce",
-        images: [],
+        images: [
+          "/projects/ecommerce/1.png",
+          "/projects/ecommerce/2.png",
+          "/projects/ecommerce/3.png",
+          "/projects/ecommerce/4.png",
+          "/projects/ecommerce/5.png",
+          "/projects/ecommerce/6.png",
+          "/projects/ecommerce/7.png",
+          "/projects/ecommerce/8.png",
+          "/projects/ecommerce/9.png",
+          "/projects/ecommerce/10.png",
+          "/projects/ecommerce/11.png",
+          "/projects/ecommerce/12.png",
+        ],
         placeholder: false,
       },
       {
