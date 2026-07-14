@@ -9,6 +9,8 @@ export type Project = {
   tags: string[];
   demoUrl?: string;
   repoUrl?: string;
+  // PLACEHOLDER: add screenshot paths/URLs here when you have them (e.g. "/projects/ecommerce/1.png").
+  images: string[];
   placeholder: boolean;
 };
 
@@ -48,6 +50,8 @@ export type SiteContent = {
     slotAvailable: string;
     demo: string;
     repo: string;
+    close: string;
+    noImages: string;
   };
   experience: { label: string; heading: string; items: ExperienceItem[] };
   contact: {
@@ -138,6 +142,8 @@ const en: SiteContent = {
     slotAvailable: "SLOT AVAILABLE",
     demo: "Demo",
     repo: "Repo",
+    close: "Close",
+    noImages: "No images yet — coming soon.",
     items: [
       {
         title: "Ecommerce",
@@ -145,6 +151,7 @@ const en: SiteContent = {
           "E-commerce site for a local pet store, built as a freelance thesis project.",
         tags: ["React", "Node.js", "Express", "MySQL"],
         repoUrl: "https://github.com/Greido/tesisecommerce",
+        images: [],
         placeholder: false,
       },
       {
@@ -153,6 +160,7 @@ const en: SiteContent = {
           "Mobile app that helps users manage their time with the Pomodoro technique to boost productivity.",
         tags: ["React Native", "Expo"],
         repoUrl: "https://github.com/Greido/Pomodoro",
+        images: [],
         placeholder: false,
       },
       {
@@ -161,6 +169,7 @@ const en: SiteContent = {
           "Nike-themed landing page showcasing products and brand news, built with React, Vite and Tailwind CSS.",
         tags: ["React", "Vite", "Tailwind CSS"],
         repoUrl: "https://github.com/Greido/NikePage",
+        images: [],
         placeholder: false,
       },
     ],
@@ -269,6 +278,8 @@ const es: SiteContent = {
     slotAvailable: "ESPACIO DISPONIBLE",
     demo: "Demo",
     repo: "Repo",
+    close: "Cerrar",
+    noImages: "Todavía no hay imágenes — próximamente.",
     items: [
       {
         title: "Ecommerce",
@@ -276,6 +287,7 @@ const es: SiteContent = {
           "Ecommerce para una tienda de animales local, desarrollado como proyecto de tesis de forma freelance.",
         tags: ["React", "Node.js", "Express", "MySQL"],
         repoUrl: "https://github.com/Greido/tesisecommerce",
+        images: [],
         placeholder: false,
       },
       {
@@ -284,6 +296,7 @@ const es: SiteContent = {
           "Aplicación móvil que ayuda a los usuarios a gestionar su tiempo utilizando la técnica Pomodoro, mejorando su productividad.",
         tags: ["React Native", "Expo"],
         repoUrl: "https://github.com/Greido/Pomodoro",
+        images: [],
         placeholder: false,
       },
       {
@@ -292,6 +305,7 @@ const es: SiteContent = {
           "Landing page de Nike para mostrar productos y novedades de la marca, hecha con React, Vite y Tailwind CSS.",
         tags: ["React", "Vite", "Tailwind CSS"],
         repoUrl: "https://github.com/Greido/NikePage",
+        images: [],
         placeholder: false,
       },
     ],
